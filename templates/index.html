@@ -1,0 +1,146 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body style="padding-left: 5em;">
+  <form action="http://localhost:5000/" method="post" style=>
+    <p>Enter Name:</p>
+    <p><input type="text" name="query" placeholder="Search" /></p>
+    <p><input type="submit" value="submit" name="search_form" /></p>
+  </form>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card" style="width: 50rem;">
+        {% for actor in actors %}
+        <div class="card border-dark mb-3" style="width: 50rem;">
+          <div class="card-body">
+            {% for key, value in actor.items() %}
+            <ul class="list-group list-group-flush">
+              {% if key == "image" %}
+              <li class="list-group-item">{{ key }} : <img src="https://films.lk/{{ value}}" style="width:100px;height:100px;"></li>
+              {% else %}
+              <li class="list-group-item">{{ key }} : {{ value}}</li>
+              {% endif %}
+
+            </ul>
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <form action="http://localhost:5000/" method="post" style=>
+          {% if addresses != "" %}
+
+      <div class="col-sm-6">
+<!--        <div class="card" style="width: 45rem;">-->
+<!--          <div class="card-body">-->
+<!--            <h5 class="card-title">Address</h5>-->
+<!--            <div class="form-check">-->
+<!--              {% for address in addresses %}-->
+<!--              <input class="form-check-input" type="checkbox" name="{{address.key}}">-->
+<!--              <label class="form-check-label" for="gridCheck1">-->
+<!--                {{address.key}} {{address.doc_count}}-->
+<!--              </label>-->
+<!--              <br>-->
+<!--              {% endfor %}-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="card" style="width: 45rem;">-->
+<!--          <div class="card-body">-->
+<!--            <h5 class="card-title">Birthday</h5>-->
+<!--            <div class="form-check">-->
+<!--              {% for birthday in birthdays %}-->
+<!--              <input class="form-check-input" type="checkbox" name="{{birthday.key}}">-->
+<!--              <label class="form-check-label" for="gridCheck1">-->
+<!--                {{birthday.key}} {{birthday.doc_count}}-->
+<!--              </label>-->
+<!--              <br>-->
+<!--              {% endfor %}-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+        <div class="card" style="width: 45rem;">
+          <div class="card-body">
+            <h5 class="card-title">Awards</h5>
+            <div class="form-check">
+              {% for award_name in awards_name %}
+              <input class="form-check-input" type="checkbox" name="{{award_name.key}}">
+              <label class="form-check-label" for="gridCheck1">
+                {{award_name.key}} {{award_name.doc_count}}
+              </label>
+              <br>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        <div class="card" style="width: 45rem;">
+          <div class="card-body">
+            <h5 class="card-title">Awards</h5>
+            <div class="form-check">
+              {% for award_fest in awards_fest %}
+              <input class="form-check-input" type="checkbox" name="{{award_fest.key}}">
+              <label class="form-check-label" for="gridCheck1">
+                {{award_fest.key}} {{award_fest.doc_count}}
+              </label>
+              <br>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        <div class="card" style="width: 45rem;">
+          <div class="card-body">
+            <h5 class="card-title">Films</h5>
+            <div class="form-check">
+              {% for film_title in films_title %}
+              <input class="form-check-input" type="checkbox" name="{{film_title.key}}">
+              <label class="form-check-label" for="gridCheck1">
+                {{film_title.key}}
+              </label>
+              <br>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        <div class="card" style="width: 45rem;">
+          <div class="card-body">
+            <h5 class="card-title">Films</h5>
+            <div class="form-check">
+              {% for film_role in films_role %}
+              <input class="form-check-input" type="checkbox" name="{{film_role.key}}">
+              <label class="form-check-label" for="gridCheck1">
+                {{film_role.key}} {{film_role.doc_count}}
+              </label>
+              <br>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        <br>
+        <p><input class="btn btn-primary" type="submit" value="submit" name="filter_form" /></p>
+
+      </div>
+    </form>
+    {% endif %}
+  </div>
+
+
+
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--  This file has been downloaded from bootdey.com @bootdey on twitter -->
+    <!--  All snippets are MIT license http://bootdey.com/license -->
+    <title>Description</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<section class="section about-section gray-bg" id="about">
+            <div class="container">
+                <div class="row align-items-center flex-row-reverse">
+                    <div class="col-lg-6">
+                        <div class="about-text go-to">
+                            <a style="marging-bottom: 10px;" href="http://localhost:5000/">Home</a>
+                            <h3 class="dark-color">{{actor_details.get('name_si')}}</h3>
+                            <h6 class="theme-color lead">{{actor_details.get('real_name_si')}}</h6>
+                            <p style="text-align: justify;">{{actor_details.get('biography_si')[:300]}}<span id="dots">...</span><span id="more">{{actor_details.get('biography_si')[300:]}}</span><a onclick="return myFunction()" id="myBtn">Read more.</a></p>
+                            <div class="row about-list">
+                                <div class="col-md-6">
+                                    <div class="media">
+                                        <label>Birthday</label>
+                                        <p>{{actor_details.get('birthday_si')}}</p>
+                                    </div>
+                                    <div class="media">
+                                        <label>Address</label>
+                                        <p>{{actor_details.get('address_si')}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="media">
+                                        <label>Death</label>
+                                        <p>{{actor_details.get('died_si')}}</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="about-avatar">
+                            <img src="https://films.lk/{{ actor_details.get('image')}}" title="" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="counter">
+                    <div class="row">
+                        <div class="col-6 col-lg-3">
+                            <div class="count-data text-center">
+                                <h6 class="count h2" data-to="500" data-speed="500">{{actor_details.get('votes')}}</h6>
+                                <p class="m-0px font-w-600">Votes</p>
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-3">
+                            <div class="count-data text-center">
+                                <h6 class="count h2" data-to="150" data-speed="150">+{{actor_details.get('rating')}}%</h6>
+                                <p class="m-0px font-w-600">Rating</p>
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-3">
+                            <div class="count-data text-center">
+                                <h6 class="count h2" data-to="850" data-speed="850">{{actor_details.get('awards_si')|length}}</h6>
+                                <p class="m-0px font-w-600">Awards</p>
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-3">
+                            <div class="count-data text-center">
+                                <h6 class="count h2" data-to="190" data-speed="190">{{actor_details.get('filmography_si')|length}}</h6>
+                                <p class="m-0px font-w-600">Films</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <hr>
+    <div class="row justify-content-center">
+        <div class="col-lg-9 pb-lg-4 text-center">
+            <h3 class="font-alt font-w-600 letter-spacing-2 text-uppercase title-xs-small title-extra-large-2">Awards and Movies</h3>
+
+        </div>
+        <!-- //.col-lg-9 -->
+    </div>
+    <!-- //.row -->
+
+    <div class="row m-lg-0">
+        <div class="col-md-6 col-lg-3 px-lg-0">
+            <div class="pricing border-base-color border-top border-extra-thick box-shadow text-center">
+                <div class="pricing-header bg-black border-base-color border-bottom border-medium-thick px-3 py-4">
+                    <span class="d-block font-alt letter-spacing-2 text-uppercase text-white title-large">AWARD FESTIVAL</span>
+                    <p class="opacity-8 m-0 mt-3 text-small text-white"><i>Local Awards.</i></p>
+                </div>
+                <!-- //.pricing-header -->
+
+                <div class="pricing-body">
+                    {% for award in actor_details.get('awards_si') %}
+                    <span class="bg-gray d-block p-4 text-large">{{award.get('award_fest_si')}}</span>
+                    {% endfor%}
+                </div>
+                <!-- //.pricing-body -->
+
+
+                <!-- //.pricing-footer -->
+            </div>
+            <!-- //.pricing -->
+        </div>
+        <!-- //.col-md-6 -->
+
+        <div class="col-md-6 col-lg-3 mt-5 mt-md-0 px-lg-0">
+            <div class="pricing border-base-color border-top border-extra-thick box-shadow text-center">
+                <div class="pricing-header bg-black border-base-color border-bottom border-medium-thick px-3 py-4">
+                    <span class="d-block font-alt letter-spacing-2 text-uppercase text-white title-large">AWARD NAME</span>
+                    <p class="opacity-8 m-0 mt-3 text-small text-white"><i>Name of the award.</i></p>
+                </div>
+                <!-- //.pricing-header -->
+
+                <div class="pricing-body">
+                    {% for award in actor_details.get('awards_si') %}
+                    <span class="bg-gray d-block p-4 text-large">{{award.get('award_name_si')}}</span>
+                    {% endfor%}
+                </div>
+                <!-- //.pricing-body -->
+
+                <!-- //.pricing-footer -->
+            </div>
+            <!-- //.pricing -->
+        </div>
+        <div class="verticalLine">
+            </div>
+        <!-- //.col-md-6 -->
+        <div class="col-md-6 col-lg-3 mt-5 mt-lg-0 px-lg-0">
+            <div class="pricing border-base-color border-top border-extra-thick box-shadow text-center">
+                <div class="pricing-header bg-black border-base-color border-bottom border-medium-thick px-3 py-4">
+                    <span class="d-block font-alt letter-spacing-2 text-uppercase text-white title-large">FILM TITLE</span>
+                    <p class="opacity-8 m-0 mt-3 text-small text-white"><i>Title of the movie.</i></p>
+                </div>
+                <!-- //.pricing-header -->
+
+                <div class="pricing-body">
+                    {% for film in actor_details.get('filmography_si') %}
+                    <span class="bg-gray d-block p-4 text-large">{{film.get('film_title_si')}}</span>
+                    {% endfor %}
+                </div>
+                <!-- //.pricing-body -->
+
+                <!-- //.pricing-footer -->
+            </div>
+            <!-- //.pricing -->
+        </div>
+        <!-- //.col-md-6 -->
+
+        <div class="col-md-6 col-lg-3 mt-5 mt-lg-0 px-lg-0">
+            <div class="pricing border-base-color border-top border-extra-thick box-shadow text-center">
+                <div class="pricing-header bg-black border-base-color border-bottom border-medium-thick px-3 py-4">
+                    <span class="d-block font-alt letter-spacing-2 text-uppercase text-white title-large">CHARACTER</span>
+                    <p class="opacity-8 m-0 mt-3 text-small text-white"><i>Role of the character</i></p>
+                </div>
+                <!-- //.pricing-header -->
+
+                <div class="pricing-body">
+                    {% for film in actor_details.get('filmography_si') %}
+                    <span class="bg-gray d-block p-4 text-large">{{film.get('role_si')}}</span>
+                    {% endfor %}
+                </div>
+                <!-- //.pricing-body -->
+
+
+                <!-- //.pricing-footer -->
+            </div>
+            <!-- //.pricing -->
+        </div>
+        <!-- //.col-md-6 -->
+    </div>
+    <!-- //.row -->
+</div>
+
+
+            </div>
+        </section>
+
+<style type="text/css">
+body{
+    color: #6F8BA4;
+    margin-top:20px;
+}
+.section {
+    padding: 100px 0;
+    position: relative;
+}
+.gray-bg {
+    background-color: #f5f5f5;
+}
+img {
+    max-width: 80%;
+}
+img {
+    vertical-align: middle;
+    border-style: none;
+}
+/* About Me
+---------------------*/
+.about-text h3 {
+  font-size: 45px;
+  font-weight: 700;
+  margin: 0 0 6px;
+}
+@media (max-width: 767px) {
+  .about-text h3 {
+    font-size: 35px;
+  }
+}
+.about-text h6 {
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+@media (max-width: 767px) {
+  .about-text h6 {
+    font-size: 18px;
+  }
+}
+.about-text p {
+  font-size: 18px;
+  max-width: 450px;
+}
+.about-text p mark {
+  font-weight: 600;
+  color: #20247b;
+}
+
+.about-list {
+  padding-top: 10px;
+}
+.about-list .media {
+  padding: 5px 0;
+}
+.about-list label {
+  color: #20247b;
+  font-weight: 600;
+  width: 88px;
+  margin: 0;
+  position: relative;
+}
+.about-list label:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 11px;
+  width: 1px;
+  height: 12px;
+  background: #20247b;
+  -moz-transform: rotate(15deg);
+  -o-transform: rotate(15deg);
+  -ms-transform: rotate(15deg);
+  -webkit-transform: rotate(90deg);
+  transform: rotate(15deg);
+  margin: auto;
+  opacity: 0;
+}
+.about-list p {
+  margin: 0;
+  font-size: 15px;
+}
+
+@media (max-width: 991px) {
+  .about-avatar {
+    margin-top: 30px;
+  }
+}
+
+.about-section .counter {
+  padding: 22px 20px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 30px rgba(31, 45, 61, 0.125);
+}
+.about-section .counter .count-data {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.about-section .counter .count {
+  font-weight: 700;
+  color: #20247b;
+  margin: 0 0 5px;
+}
+.about-section .counter p {
+  font-weight: 600;
+  margin: 0;
+}
+mark {
+    background-image: linear-gradient(rgba(252, 83, 86, 0.6), rgba(252, 83, 86, 0.6));
+    background-size: 100% 3px;
+    background-repeat: no-repeat;
+    background-position: 0 bottom;
+    background-color: transparent;
+    padding: 0;
+    color: currentColor;
+}
+.theme-color {
+    color: #fc5356;
+}
+.dark-color {
+    color: #20247b;
+}
+
+.border-base-color {
+    border-color: #ef4135 !important;
+}
+
+.box-shadow {
+    box-shadow: 0 0 25px 0 rgba(0,0,0,.05);
+}
+.border-extra-thick {
+    border-width: 4px!important;
+}
+.border-top {
+    border-top: 1px solid rgba(0,0,0,.1);
+}
+.text-center {
+    text-align: center!important;
+}
+.border-top {
+    border-top: 1px solid #dee2e6!important;
+}
+.bg-black {
+    background-color: #000!important;
+}
+.title-large {
+    font-size: 1.75rem!important;
+    line-height: 2.275rem!important;
+}
+.pricing .price .symbol {
+    bottom: 36px;
+    position: relative;
+}
+.title-medium {
+    font-size: 1.5rem!important;
+    line-height: 2.25rem!important;
+}
+.title-extra-large-5 {
+    font-size: 5rem!important;
+    line-height: 5rem!important;
+}
+.text-medium {
+    font-size: .875rem!important;
+    line-height: 1.313rem!important;
+}
+.bg-base-color {
+    background-color: #ef4135 !important;
+}
+.verticalLine {
+  border-left: 1px solid #f5f5f5;
+}
+
+.p-4 {
+    padding: 0.5rem!important;
+}
+
+.row {
+    display: flex !important;
+    flex-wrap: nowrap  !important;
+  }
+ #more {display: none;}
+</style>
+
+<script type="text/javascript">
+
+function myFunction() {
+  var dots = document.getElementById("dots");
+  var moreText = document.getElementById("more");
+  var btnText = document.getElementById("myBtn");
+
+  if (dots.style.display === "none") {
+    dots.style.display = "inline";
+    btnText.innerHTML = "Read more";
+    moreText.style.display = "none";
+  } else {
+    dots.style.display = "none";
+    btnText.innerHTML = "Read less";
+    moreText.style.display = "inline";
+  }
+}
+</script>
+</body>
+</html>
