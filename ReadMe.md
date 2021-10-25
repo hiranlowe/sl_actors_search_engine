@@ -12,8 +12,11 @@ on cmd-> start.bat
 ## Fields and Metadata
 ### Text Fields
 * Name
+* Real Name
 * Birthday
 * Date of death
+* Address
+* Biography
 * Awards
   * Award Name
   * Award Festival Name
