@@ -31,13 +31,16 @@ on cmd-> start.bat
   * Ex: Top 10 actors, හොඳම නළුවන් 10
 * Filter Results by Award name, Award Festival, Movie Title, Movie role
   * Ex: හොඳම නළුවන් 20 filter by නිළියන්
+* Search with mispelled words
+  * Ex: 'viajaay' or 'විජයා'  will give results belongs to vijaya
 
 ## Features
 * Both Sinhala and English can be used for searching
 * Automatically identifies keywords like 'top', 'best', 'හොඳම' and change results accordingly
+* Search will work for mispelled words
 * Range query support
 * Results are preprocessed before displaying
-* Votes and Ratings are displayed in the search results page
+
 
 ## Scraping and other Information
 For scraping films.lk website was used. 

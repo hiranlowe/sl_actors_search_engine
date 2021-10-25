@@ -29,11 +29,13 @@ def keyword_search(query):
                     "filmography.role",
                     "filmography_si.film_title_si",
                     "filmography_si.role_si",
-                    "image"]
+                    "image"],
+                "fuzziness": 2,
 
             }
 
         },
+
 
         "aggs": {
             # "name": {
@@ -131,7 +133,8 @@ def filtered_search(query, award_name_filter, award_fest_filter, film_title_filt
                 "filmography.role",
                 "filmography_si.film_title_si",
                 "filmography_si.role_si",
-                "image"]
+                "image"],
+
 
         }
     }]
