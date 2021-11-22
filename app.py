@@ -6,12 +6,12 @@ import requests
 from flask import flash, render_template, request, redirect, jsonify
 from search import search, search_filtered
 import json
+from flask_paginate import Pagination, get_page_args
 
 es = connect_elasticsearch()
 
 
 app = Flask(__name__)
-
 
 # with open('scrape/actors_meta', 'rb') as fp:
 #     actors = pickle.load(fp)
@@ -45,22 +45,27 @@ def search_actor():
     global g_awards_fest
     global g_films_role
     query, actors, awards_name, films_title, awards_fest, films_role = '', '', '', '', '', ''
+    search1 = False
     if request.method == 'POST':
         if 'search_form' in request.form:
             if request.form['query']:
                 query = request.form['query']
+                search1 = True
                 print(query)
             else:
                 query = ''
             actors, awards_name, films_title, awards_fest, films_role = search(query)
+            print('------------------------------')
             g_query = query
             g_actors = actors
             g_awards_name = awards_name
             g_films_title = films_title
             g_awards_fest = awards_fest
             g_films_role = films_role
+            print('------------------------------------')
+            print(len(actors))
             return render_template('index_new.html', actors=actors, awards_name=awards_name, films_title=films_title,
-                                   awards_fest=awards_fest, films_role=films_role, query=query)
+                                   awards_fest=awards_fest, films_role=films_role, query=query,pagination='')
 
         elif 'filter_form' in request.form:
             print("------------------------")
@@ -94,7 +99,7 @@ def search_actor():
 
 
             return render_template('index_new.html', actors=actors, awards_name=awards_name, films_title=films_title,
-                               awards_fest=awards_fest, films_role=films_role, query=query)
+                               awards_fest=awards_fest, films_role=films_role, query=query, pagination=None)
 
         elif 'details' in request.form:
             print(request.form.get('details'))
@@ -105,7 +110,7 @@ def search_actor():
             return render_template('description_new.html', actor_details=data)
 
     else:
-        return render_template('index_new.html', actors='', awards_name='', films_title='', awards_fest='', films_role='')
+        return render_template('index_new.html', actors='', awards_name='', films_title='', awards_fest='', films_role='', pagination=None)
 
 
 

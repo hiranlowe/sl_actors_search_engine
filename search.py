@@ -9,7 +9,7 @@ es = connect_elasticsearch()
 
 def keyword_search(query):
     results = es.search(index='index-actors', body={
-        "size": 10,
+        "size": 500,
         "query": {
             "multi_match": {
                 "query": query,
@@ -314,7 +314,7 @@ def filtered_search_best(query, award_name_filter, award_fest_filter, film_title
                 }
             }
         ],
-        "size": val or 10,
+        "size": val or 500,
         "aggs": {
             "awards": {
                 "nested": {
@@ -368,7 +368,7 @@ def search_best(query, val):
                 }
             }
         ],
-        "size": val or 10,
+        "size": val or 500,
         "aggs": {
             "awards": {
                 "nested": {
@@ -417,22 +417,6 @@ def search_best(query, val):
 def post_processing(results):
     actors = []
     for i in range(len(results['hits']['hits'])):
-        # lyrics = json.dumps(results['hits']['hits'][i]['_source']["name"], ensure_ascii=False)
-        # lyrics = lyrics.replace('"', '')
-        # lyrics = lyrics.replace("'", '')
-        # lyrics = lyrics.replace('\\', '')
-        # lyrics = lyrics.replace('t', '')
-        # lyrics = lyrics.replace('\xa0', '')
-        # lyrics = "<br>".join(lyrics.split("n"))
-        # lyrics = re.sub(r'(<br> )+', r'\1', lyrics)
-        # j = 0
-        # while True:
-        #     if lyrics[j] == '<' or lyrics[j] == '>' or lyrics[j] == 'b' or lyrics[j] == 'r' or lyrics[j] == ' ':
-        #         j += 1
-        #     else:
-        #         break
-        # lyrics = lyrics[j:]
-        # results['hits']['hits'][i]['_source']["song_lyrics"] = lyrics
         actors.append(results['hits']['hits'][i]['_source'])
     aggregations = results['aggregations']
     # names = aggregations['name']['buckets']

@@ -82,11 +82,32 @@ def start_index():
     with open('actors.json', encoding='utf8') as f:
         data = json.loads(f.read())
     print(data)
+    with open('stopwords.txt', encoding='utf8') as file:
+        lines = file.readlines()
+        stopwords = [line.rstrip() for line in lines]
+    print(stopwords)
     # helpers.bulk(es, data, index='index-actors')
     es.indices.create(
         index="index-actors",
         body={
-            "settings": {"number_of_shards": 1},
+            "settings": {
+                "number_of_shards": 1,
+                "analysis": {
+                    "analyzer": {
+                        "default": {
+                            "tokenizer": "whitespace",
+                            "filter": ["my_custom_stop_words_filter"]
+                        }
+                    },
+                    "filter": {
+                        "my_custom_stop_words_filter": {
+                            "type": "stop",
+                            "ignore_case": True,
+                            "stopwords": stopwords
+                        }
+                    }
+                }
+            },
             "mappings": {
                 "properties": {
                     "name": {"type": "text"},
