@@ -178,7 +178,8 @@ def start_index():
                                               }
                                           },
                                       },
-                                  }, },
+                                  },
+                                  },
                     'filmography': {"type": "nested",
                                     "properties": {
                                         "film_title": {

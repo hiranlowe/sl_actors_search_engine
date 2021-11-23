@@ -1,7 +1,10 @@
 # Sri Lankan Actors/Actresses Search Engine
 
-Source codes for a search engine made by using Elastic Search and python for searching Actors and Actresses in Sri Lanka.
-
+Source codes for a search engine made by using Elastic Search and python flask for searching Actors and Actresses in Sri Lanka.
+* What is in the project:
+  * Frontends: for displaying search results, for displaying relevant data for result
+  * Scrape: Scraped documents and python file used was scraping 
+  * Scorpus: python file for indexing and translation library code
 ## Getting Started
 
 Wait after the following command until the elastic search and flask application starts.

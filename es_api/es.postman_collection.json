@@ -1,0 +1,213 @@
+{
+	"info": {
+		"_postman_id": "1dadfc8b-cccd-47f5-ae43-0d684b692f4e",
+		"name": "es",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:9200/_all/_settings",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"index.blocks.read_only_allow_delete\": null}'"
+				},
+				"url": {
+					"raw": "http://localhost:9200/_all/_settings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"_all",
+						"_settings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": " http://127.0.0.1:5000/search_actor",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "keyword",
+							"value": "විජය",
+							"type": "text"
+						},
+						{
+							"key": "keyword",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/search_actor",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"search_actor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:9200/_cluster/settings",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"transient\": { \"cluster.routing.allocation.disk.threshold_enabled\": false } }"
+				},
+				"url": {
+					"raw": "http://localhost:9200/_cluster/settings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"_cluster",
+						"settings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:9200/_all",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9200/_all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:9200/index-actors/_search/?size=1000&pretty=1",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:9200/index-actors/_search/?size=1000&pretty=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"index-actors",
+						"_search",
+						""
+					],
+					"query": [
+						{
+							"key": "size",
+							"value": "1000"
+						},
+						{
+							"key": "pretty",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:9200/_aliases",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:9200/_aliases",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"_aliases"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:9200/index-actors/_search?size=10",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"size\": 500,\r\n    \"query\": {\r\n        \"bool\": {\r\n            \"should\": [\r\n                {\r\n                    \"multi_match\": {\r\n                        \"query\": \"vijaya\",\r\n                        \"fuzziness\": 2,\r\n                        \"type\": \"best_fields\",\r\n                        \"fields\": [\r\n                            \"name\",\r\n                            \"name_si\"\r\n                        ]\r\n                    }\r\n                },\r\n                {\r\n                    \"nested\": {\r\n                        \"path\": \"awards_si\",\r\n                        \"query\": {\r\n                            \"match\": {\r\n                                \"awards_si.award_name_si\": \"ප්රසිද්ධ නළුවා\"\r\n                            }\r\n                        }\r\n                    }\r\n                }\r\n            ]\r\n        }\r\n    }\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9200/index-actors/_search",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"index-actors",
+						"_search"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

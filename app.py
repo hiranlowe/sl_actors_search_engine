@@ -3,12 +3,13 @@ from api.elastic_test import connect_elasticsearch
 import pickle
 from flask import jsonify, request
 import requests
-from flask import flash, render_template, request, redirect, jsonify
+from flask import flash, render_template, request, redirect, jsonify, url_for
 from search import search, search_filtered
 import json
 from flask_paginate import Pagination, get_page_args
 
 es = connect_elasticsearch()
+
 
 
 app = Flask(__name__)
@@ -38,6 +39,12 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def search_actor():
+    if es.ping():
+        print('Connected')
+    else:
+        print('Not Connected')
+        return redirect(url_for('server_error'))
+
     global g_query
     global g_actors
     global g_awards_name
@@ -112,7 +119,12 @@ def search_actor():
     else:
         return render_template('index_new.html', actors='', awards_name='', films_title='', awards_fest='', films_role='', pagination=None)
 
-
+@app.route('/500', methods=['GET', 'POST'])
+def server_error():
+    if es.ping():
+        return redirect(url_for('search_actor'))
+    else:
+        return render_template('500.html')
 
 
 if __name__ == '__main__':
