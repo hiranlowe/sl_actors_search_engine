@@ -2,7 +2,7 @@ from elasticsearch import Elasticsearch, helpers
 import json
 import re
 from api.elastic_test import connect_elasticsearch
-from scorpus.google_trans_new import google_translator
+from corpus.google_trans_new import google_translator
 
 es = connect_elasticsearch()
 
