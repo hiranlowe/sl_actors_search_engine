@@ -7,8 +7,18 @@ Source codes for a search engine made by using Elastic Search and python for sea
 Wait after the following command until the elastic search and flask application starts.
 
 ```bash
-Start elastic search service before starting the app. (Elastic search folder with indexes is added here)
-on root folder cmd-> ./start.bat
+install requirements.txt using 
+> pip install -r requirements.txt 
+command.
+
+start elastic search service before starting the app. 
+(Elastic search folder with indexes is added in elastic_search folder)
+on root folder cmd
+> cd elastic_search/bin
+> elasticsearch.bat
+
+on root folder cmd
+> ./start.bat
 ```
 ## Fields and Metadata
 ### Text Fields
